@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.chukimmuoi.analogclock.R
 import com.chukimmuoi.analogclock.util.convertDpToPixel
+import com.chukimmuoi.analogclock.view.model.Center
 import com.chukimmuoi.analogclock.view.model.Circle
 
 /**
@@ -45,6 +46,7 @@ class AnalogClockView : View {
     private var mCurrentWidth: Int = 0
 
     private lateinit var mCircle: Circle
+    private lateinit var mCenter: Center
 
     init {
 
@@ -105,6 +107,8 @@ class AnalogClockView : View {
 
     private fun createUI () {
         mCircle = Circle(mStrokeColor, mStrokeWidth.toFloat(), mBackgroundRadius.toFloat())
+        mCenter= Center(mStrokeColor, mStrokeWidth.toFloat(),
+                mBackgroundColor, mBackgroundRadius.toFloat())
 
         mCurrentWidth = mBackgroundRadius * 2
     }
@@ -129,11 +133,14 @@ class AnalogClockView : View {
 
         // Circle.
         mCircle.setCoordinates(xCenter, yCenter)
+        // Center.
+        mCenter.setCoordinates(xCenter, yCenter)
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         mCircle.draw(canvas)
+        mCenter.draw(canvas)
     }
 }

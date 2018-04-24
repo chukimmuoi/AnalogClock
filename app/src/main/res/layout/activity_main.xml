@@ -9,8 +9,9 @@
     <com.chukimmuoi.analogclock.view.AnalogClockView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:analogClockBackgroundColor="#8A000000"
+        app:analogClockRadius="144dp"
         app:analogClockStrokeColor="#000000"
-        app:analogClockStrokeWidth="5dp"
-        app:analogClockRadius="144dp"/>
+        app:analogClockStrokeWidth="5dp"/>
 
 </android.support.constraint.ConstraintLayout>
