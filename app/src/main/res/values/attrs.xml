@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AnalogClockView">
+        <attr name="analogClockBackgroundColor" format="color"/>
+        <attr name="analogClockRadius" format="dimension"/>
+        
+        <attr name="analogClockStrokeColor" format="color"/>
+        <attr name="analogClockStrokeWidth" format="dimension"/>
+
+        <attr name="analogClockHoursColor" format="color"/>
+        <attr name="analogClockHoursLength" format="dimension"/>
+
+        <attr name="analogClockMinuteColor" format="color"/>
+        <attr name="analogClockMinuteLength" format="dimension"/>
+
+        <attr name="analogClockSecondColor" format="color"/>
+        <attr name="analogClockSecondLength" format="dimension"/>
+    </declare-styleable>
+</resources>
