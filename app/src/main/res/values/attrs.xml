@@ -4,6 +4,10 @@
         <attr name="analogClockBackgroundColor" format="color"/>
         <attr name="analogClockRadius" format="dimension"/>
         <attr name="analogClockTextSize" format="dimension"/>
+        <attr name="analogClockType" format="enum">
+            <enum name="Number" value="0x000a"/>
+            <enum name="Etruria" value="0x000b"/>
+        </attr>
 
         <attr name="analogClockStrokeColor" format="color"/>
         <attr name="analogClockStrokeWidth" format="dimension"/>

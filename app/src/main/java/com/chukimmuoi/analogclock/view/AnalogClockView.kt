@@ -34,6 +34,7 @@ class AnalogClockView : View {
     private var mBackgroundColor = 0
     private var mBackgroundRadius = 0
     private var mTextSize = 0F
+    private var mNumberType = Number.NUMBER_TYPE
 
     private var mStrokeColor = 0
     private var mStrokeWidth = 0
@@ -73,6 +74,10 @@ class AnalogClockView : View {
         mTextSize = typeArray.getDimension(
                 R.styleable.AnalogClockView_analogClockTextSize,
                 TEXT_SIZE_DEFAULT.changeToTextSize(resources)
+        )
+        mNumberType = typeArray.getInt(
+                R.styleable.AnalogClockView_analogClockType,
+                Number.NUMBER_TYPE
         )
         mStrokeColor = typeArray.getColor(
                 R.styleable.AnalogClockView_analogClockStrokeColor,
@@ -122,7 +127,7 @@ class AnalogClockView : View {
                 mStrokeColor, mStrokeWidth.toFloat(),
                 mTextSize,
                 mBackgroundRadius.toFloat(),
-                Number.ETRURIA_TYPE)
+                mNumberType)
 
         mCurrentWidth = mBackgroundRadius * 2
     }

@@ -13,6 +13,7 @@
         app:analogClockRadius="144dp"
         app:analogClockStrokeColor="#000000"
         app:analogClockStrokeWidth="5dp"
-        app:analogClockTextSize="16sp"/>
+        app:analogClockTextSize="16sp"
+        app:analogClockType="Etruria"/>
 
 </android.support.constraint.ConstraintLayout>
