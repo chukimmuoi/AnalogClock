@@ -119,7 +119,7 @@ class AnalogClockView : View {
         mCenter= Center(mStrokeColor, mStrokeWidth.toFloat(),
                 mBackgroundColor, mBackgroundRadius.toFloat())
         mNumber = Number(
-                mStrokeColor,
+                mStrokeColor, mStrokeWidth.toFloat(),
                 mTextSize,
                 mBackgroundRadius.toFloat(),
                 Number.ETRURIA_TYPE)

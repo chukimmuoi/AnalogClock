@@ -16,7 +16,7 @@ import android.graphics.Typeface
  * @Project : AnalogClock
  * Created by chukimmuoi on 24/04/2018.
  */
-class Number(private val mStrokeColor: Int,
+class Number(private val mStrokeColor: Int, private val mStrokeWidth: Float,
              private val mTextSize: Float,
              private val mRadius: Float,
              private val type: Int) {
@@ -35,6 +35,8 @@ class Number(private val mStrokeColor: Int,
 
     private val mRect by lazy { Rect() }
 
+    private var mSpaceCenterToNumber = 0F
+
     init {
         with(mPaint) {
             isAntiAlias = true
@@ -43,6 +45,7 @@ class Number(private val mStrokeColor: Int,
             textSize = mTextSize
             typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
         }
+        mSpaceCenterToNumber = mRadius - mTextSize / 2 - mStrokeWidth
     }
 
     fun setCoordinates(xCenter: Float, yCenter: Float) : Number {
@@ -61,8 +64,8 @@ class Number(private val mStrokeColor: Int,
             }
             mPaint.getTextBounds(text, 0, text.length, mRect) // Trả về hình chữ nhật bao quanh text, ở đây là mRect. Dựa vào đó biết đươc width và heigth của text.
             val angle = Math.PI / 6 * (i - 3)
-            val x = (xCenter + Math.cos(angle) * mRadius - mRect.width() / 2).toFloat() // - mRect.width() / 2 mục đích để toạ độ x ở chính giữa text cần vẽ.
-            val y = (yCenter + Math.sin(angle) * mRadius + mRect.height() / 2).toFloat() // + mRect.height() / 2 mục đích để toạ độ y ở chính giữa text cần vẽ.
+            val x = (xCenter + Math.cos(angle) * mSpaceCenterToNumber - mRect.width() / 2).toFloat() // - mRect.width() / 2 mục đích để toạ độ x ở chính giữa text cần vẽ.
+            val y = (yCenter + Math.sin(angle) * mSpaceCenterToNumber + mRect.height() / 2).toFloat() // + mRect.height() / 2 mục đích để toạ độ y ở chính giữa text cần vẽ.
             mNumberDraws.add(i, NumberDraw(text, x, y))
         }
 
