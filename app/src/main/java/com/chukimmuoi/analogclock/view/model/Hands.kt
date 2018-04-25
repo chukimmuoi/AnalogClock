@@ -67,13 +67,16 @@ class Hands (private val mStrokeWidth: Float,
         val minute = calendar.get(Calendar.MINUTE)
         val second = calendar.get(Calendar.SECOND)
 
-        val angleHouse = Math.PI * ((hours + minute / 60) * 5F) / 30 - Math.PI / 2
+        val minuteCurrent = minute + second / 60F
+        val hoursCurrent = hours + minuteCurrent / 60F
+
+        val angleHouse = Math.PI / 30 * ((hoursCurrent * 5F) - 15)
         drawLine(canvas, angleHouse, mHoursLength, mPaintHours)
 
-        val angleMinute = Math.PI * minute / 30 - Math.PI / 2
+        val angleMinute = Math.PI / 30 * (minuteCurrent - 15)
         drawLine(canvas, angleMinute, mMinuteLength, mPaintMinus)
 
-        val angleSecond = Math.PI * second / 30 - Math.PI / 2
+        val angleSecond = Math.PI / 30 * (second - 15)
         drawLine(canvas, angleSecond, mSecondLength, mPaintSecond)
     }
 }
