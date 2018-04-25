@@ -2,6 +2,7 @@ package com.chukimmuoi.analogclock.view.model
 
 import android.graphics.Canvas
 import android.graphics.Paint
+import com.chukimmuoi.analogclock.util.angle60
 import java.util.*
 
 /**
@@ -70,13 +71,8 @@ class Hands (private val mStrokeWidth: Float,
         val minuteCurrent = minute + second / 60F
         val hoursCurrent = hours + minuteCurrent / 60F
 
-        val angleHouse = Math.PI / 30 * ((hoursCurrent * 5F) - 15)
-        drawLine(canvas, angleHouse, mHoursLength, mPaintHours)
-
-        val angleMinute = Math.PI / 30 * (minuteCurrent - 15)
-        drawLine(canvas, angleMinute, mMinuteLength, mPaintMinus)
-
-        val angleSecond = Math.PI / 30 * (second - 15)
-        drawLine(canvas, angleSecond, mSecondLength, mPaintSecond)
+        drawLine(canvas, (hoursCurrent * 5F).angle60(), mHoursLength, mPaintHours)
+        drawLine(canvas, minuteCurrent.angle60(), mMinuteLength, mPaintMinus)
+        drawLine(canvas, second.angle60(), mSecondLength, mPaintSecond)
     }
 }

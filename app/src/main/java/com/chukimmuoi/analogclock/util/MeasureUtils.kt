@@ -36,3 +36,59 @@ fun Float.changeToTextSize(resources: Resources) : Float {
 fun Int.changeToTextSize(resources: Resources) : Float {
     return Math.round(this * resources.displayMetrics.scaledDensity).toFloat()
 }
+
+/**
+ * @param count có giá trị là 12 (tương đương với 12 vị trí giờ) hoặc 60 (tương đương 60 vị trí phút)
+ * */
+fun Float.angle(count: Int) : Double {
+    return  Math.PI / (count / 2) * (this - count / 4)
+}
+
+/**
+ * 60 vị trí cách đều nhau trên hình tròn.
+ * */
+fun Float.angle60() : Double {
+    return angle(60)
+}
+
+/**
+ * 12 vị trí cách đều nhau trên hình tròn.
+ * */
+fun Float.angle12() : Double {
+    return angle(12)
+}
+
+/**
+ * 4 vị trí cách đều nhau trên hình tròn.
+ * */
+fun Float.angle4() : Double {
+    return angle(4)
+}
+
+/**
+ * @param count có giá trị là 12 (tương đương với 12 vị trí giờ) hoặc 60 (tương đương 60 vị trí phút)
+ * */
+fun Int.angle(count: Int) : Double {
+    return  Math.PI / (count / 2) * (this - count / 4)
+}
+
+/**
+ * 60 vị trí cách đều nhau trên hình tròn.
+ * */
+fun Int.angle60() : Double {
+    return angle(60)
+}
+
+/**
+ * 12 vị trí cách đều nhau trên hình tròn.
+ * */
+fun Int.angle12() : Double {
+    return angle(12)
+}
+
+/**
+ * 4 vị trí cách đều nhau trên hình tròn.
+ * */
+fun Int.angle4() : Double {
+    return angle(4)
+}
