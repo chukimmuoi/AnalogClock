@@ -177,5 +177,8 @@ class AnalogClockView : View {
         mCenter.draw(canvas)
         mNumber.draw(canvas)
         mHands.draw(canvas)
+
+        postInvalidateDelayed(1000)
+        invalidate()
     }
 }

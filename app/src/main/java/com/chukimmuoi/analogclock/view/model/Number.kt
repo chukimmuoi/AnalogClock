@@ -25,9 +25,9 @@ class Number(private val mStrokeColor: Int, private val mStrokeWidth: Float,
         const val NONE_TYPE    = 0x000c
 
         private val numbers =
-                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+                listOf(12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
         private val etruria =
-                listOf("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII")
+                listOf("XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI")
     }
 
     private val mPaint by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }

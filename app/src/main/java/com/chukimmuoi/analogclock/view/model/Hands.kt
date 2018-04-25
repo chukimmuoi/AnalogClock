@@ -22,8 +22,6 @@ class Hands (private val mStrokeWidth: Float,
     private val mPaintMinus by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
     private val mPaintSecond by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
 
-    private val mCalendar by lazy { Calendar.getInstance() }
-
     private var mX = 0F
     private var mY = 0F
 
@@ -62,11 +60,12 @@ class Hands (private val mStrokeWidth: Float,
     }
 
     fun draw(canvas: Canvas) {
-        val hours = mCalendar.get(Calendar.HOUR_OF_DAY)
+        val calendar = Calendar.getInstance()
+        val hours = calendar.get(Calendar.HOUR_OF_DAY)
         if (hours > 12) hours - 12
 
-        val minute = mCalendar.get(Calendar.MINUTE)
-        val second = mCalendar.get(Calendar.SECOND)
+        val minute = calendar.get(Calendar.MINUTE)
+        val second = calendar.get(Calendar.SECOND)
 
         val angleHouse = Math.PI * ((hours + minute / 60) * 5F) / 30 - Math.PI / 2
         drawLine(canvas, angleHouse, mHoursLength, mPaintHours)
