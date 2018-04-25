@@ -12,6 +12,7 @@
         app:analogClockBackgroundColor="#8A000000"
         app:analogClockRadius="144dp"
         app:analogClockStrokeColor="#000000"
-        app:analogClockStrokeWidth="5dp"/>
+        app:analogClockStrokeWidth="5dp"
+        app:analogClockTextSize="16sp"/>
 
 </android.support.constraint.ConstraintLayout>

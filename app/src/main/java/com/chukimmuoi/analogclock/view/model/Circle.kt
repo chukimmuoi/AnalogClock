@@ -16,8 +16,8 @@ class Circle(private val mStrokeColor: Int, private val mStrokeWidth: Float, pri
 
     private val mPaint by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
 
-    private var mXCenter: Float = 0F
-    private var mYCenter: Float = 0F
+    private var mXCenter = 0F
+    private var mYCenter = 0F
 
     init {
         with(mPaint) {

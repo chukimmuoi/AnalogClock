@@ -18,8 +18,8 @@ class Center (private val mStrokeColor: Int, private val mStrokeWidth: Float,
     private val mPaintCenter by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
     private val mPaintBackground by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
 
-    private var mXCenter: Float = 0F
-    private var mYCenter: Float = 0F
+    private var mXCenter = 0F
+    private var mYCenter = 0F
 
     init {
         with(mPaintCenter) {

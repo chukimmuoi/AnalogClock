@@ -3,7 +3,8 @@
     <declare-styleable name="AnalogClockView">
         <attr name="analogClockBackgroundColor" format="color"/>
         <attr name="analogClockRadius" format="dimension"/>
-        
+        <attr name="analogClockTextSize" format="dimension"/>
+
         <attr name="analogClockStrokeColor" format="color"/>
         <attr name="analogClockStrokeWidth" format="dimension"/>
 

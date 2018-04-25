@@ -11,6 +11,8 @@ import android.content.res.Resources
  * @Project : AnalogClock
  * Created by chukimmuoi on 23/04/2018.
  */
+// scaleDensity: Dung cho font chu
+// density: Dung cho size
 fun Float.convertPixelToDp(resources: Resources) : Float {
     return this / resources.displayMetrics.density
 }
@@ -25,4 +27,12 @@ fun Int.convertPixelToDp(resources: Resources) : Int {
 
 fun Int.convertDpToPixel(resources: Resources) : Int {
     return Math.round(this * resources.displayMetrics.density)
+}
+
+fun Float.changeToTextSize(resources: Resources) : Float {
+    return Math.round(this * resources.displayMetrics.scaledDensity).toFloat()
+}
+
+fun Int.changeToTextSize(resources: Resources) : Float {
+    return Math.round(this * resources.displayMetrics.scaledDensity).toFloat()
 }

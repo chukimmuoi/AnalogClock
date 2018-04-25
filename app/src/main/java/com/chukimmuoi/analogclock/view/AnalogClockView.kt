@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import com.chukimmuoi.analogclock.R
+import com.chukimmuoi.analogclock.util.changeToTextSize
 import com.chukimmuoi.analogclock.util.convertDpToPixel
 import com.chukimmuoi.analogclock.view.model.Center
 import com.chukimmuoi.analogclock.view.model.Circle
+import com.chukimmuoi.analogclock.view.model.Number
 
 /**
  * @author  : Pos365
@@ -26,27 +28,30 @@ class AnalogClockView : View {
 
         private const val RADIUS_DEFAULT = 144
         private const val STROKE_DEFAULT = 1
+        private const val TEXT_SIZE_DEFAULT = 16
     }
 
-    private var mBackgroundColor: Int = 0
-    private var mBackgroundRadius: Int = 0
+    private var mBackgroundColor = 0
+    private var mBackgroundRadius = 0
+    private var mTextSize = 0F
 
-    private var mStrokeColor: Int = 0
-    private var mStrokeWidth: Int = 0
+    private var mStrokeColor = 0
+    private var mStrokeWidth = 0
 
-    private var mHoursColor: Int = 0
-    private var mHoursLength: Int = 0
+    private var mHoursColor = 0
+    private var mHoursLength = 0
 
-    private var mMinuteColor: Int = 0
-    private var mMinuteLength: Int = 0
+    private var mMinuteColor = 0
+    private var mMinuteLength = 0
 
-    private var mSecondColor: Int = 0
-    private var mSeCondLength: Int = 0
+    private var mSecondColor = 0
+    private var mSeCondLength = 0
 
-    private var mCurrentWidth: Int = 0
+    private var mCurrentWidth = 0
 
     private lateinit var mCircle: Circle
     private lateinit var mCenter: Center
+    private lateinit var mNumber: Number
 
     init {
 
@@ -64,6 +69,10 @@ class AnalogClockView : View {
         mBackgroundRadius = typeArray.getDimensionPixelSize(
                 R.styleable.AnalogClockView_analogClockRadius,
                 RADIUS_DEFAULT.convertDpToPixel(resources)
+        )
+        mTextSize = typeArray.getDimension(
+                R.styleable.AnalogClockView_analogClockTextSize,
+                TEXT_SIZE_DEFAULT.changeToTextSize(resources)
         )
         mStrokeColor = typeArray.getColor(
                 R.styleable.AnalogClockView_analogClockStrokeColor,
@@ -109,6 +118,11 @@ class AnalogClockView : View {
         mCircle = Circle(mStrokeColor, mStrokeWidth.toFloat(), mBackgroundRadius.toFloat())
         mCenter= Center(mStrokeColor, mStrokeWidth.toFloat(),
                 mBackgroundColor, mBackgroundRadius.toFloat())
+        mNumber = Number(
+                mStrokeColor,
+                mTextSize,
+                mBackgroundRadius.toFloat(),
+                Number.ETRURIA_TYPE)
 
         mCurrentWidth = mBackgroundRadius * 2
     }
@@ -135,6 +149,7 @@ class AnalogClockView : View {
         mCircle.setCoordinates(xCenter, yCenter)
         // Center.
         mCenter.setCoordinates(xCenter, yCenter)
+        mNumber.setCoordinates(xCenter, yCenter)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -142,5 +157,6 @@ class AnalogClockView : View {
 
         mCircle.draw(canvas)
         mCenter.draw(canvas)
+        mNumber.draw(canvas)
     }
 }
