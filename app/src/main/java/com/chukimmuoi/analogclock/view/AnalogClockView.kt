@@ -10,6 +10,7 @@ import com.chukimmuoi.analogclock.util.changeToTextSize
 import com.chukimmuoi.analogclock.util.convertDpToPixel
 import com.chukimmuoi.analogclock.view.model.Center
 import com.chukimmuoi.analogclock.view.model.Circle
+import com.chukimmuoi.analogclock.view.model.Hands
 import com.chukimmuoi.analogclock.view.model.Number
 
 /**
@@ -28,7 +29,6 @@ class AnalogClockView : View {
 
         private const val RADIUS_DEFAULT = 144
         private const val STROKE_DEFAULT = 1
-        private const val TEXT_SIZE_DEFAULT = 16
     }
 
     private var mBackgroundColor = 0
@@ -53,6 +53,7 @@ class AnalogClockView : View {
     private lateinit var mCircle: Circle
     private lateinit var mCenter: Center
     private lateinit var mNumber: Number
+    private lateinit var mHands: Hands
 
     init {
 
@@ -71,10 +72,11 @@ class AnalogClockView : View {
                 R.styleable.AnalogClockView_analogClockRadius,
                 RADIUS_DEFAULT.convertDpToPixel(resources)
         )
-        mTextSize = typeArray.getDimension(
-                R.styleable.AnalogClockView_analogClockTextSize,
-                TEXT_SIZE_DEFAULT.changeToTextSize(resources)
-        )
+        mTextSize = Math.min(
+                typeArray.getDimension(
+                        R.styleable.AnalogClockView_analogClockTextSize,
+                        (RADIUS_DEFAULT / 9).changeToTextSize(resources)
+                ), (mBackgroundRadius / 9).toFloat())
         mNumberType = typeArray.getInt(
                 R.styleable.AnalogClockView_analogClockType,
                 Number.NUMBER_TYPE
@@ -91,26 +93,29 @@ class AnalogClockView : View {
                 R.styleable.AnalogClockView_analogClockHoursColor,
                 Color.WHITE
         )
-        mHoursLength = typeArray.getDimensionPixelSize(
-                R.styleable.AnalogClockView_analogClockHoursLength,
-                (RADIUS_DEFAULT * 0.5).toInt().convertDpToPixel(resources)
-        )
+        mHoursLength = Math.min(
+                typeArray.getDimensionPixelSize(
+                        R.styleable.AnalogClockView_analogClockHoursLength,
+                        (RADIUS_DEFAULT * 0.5).toInt().convertDpToPixel(resources)
+                ), mBackgroundRadius)
         mMinuteColor = typeArray.getColor(
                 R.styleable.AnalogClockView_analogClockMinuteColor,
                 Color.WHITE
         )
-        mMinuteLength = typeArray.getDimensionPixelSize(
-                R.styleable.AnalogClockView_analogClockMinuteLength,
-                (RADIUS_DEFAULT * 0.7).toInt().convertDpToPixel(resources)
-        )
+        mMinuteLength = Math.min(
+                typeArray.getDimensionPixelSize(
+                        R.styleable.AnalogClockView_analogClockMinuteLength,
+                        (RADIUS_DEFAULT * 0.7).toInt().convertDpToPixel(resources)
+                ), mBackgroundRadius)
         mSecondColor = typeArray.getColor(
                 R.styleable.AnalogClockView_analogClockSecondColor,
                 Color.WHITE
         )
-        mSeCondLength = typeArray.getDimensionPixelSize(
-                R.styleable.AnalogClockView_analogClockSecondLength,
-                (RADIUS_DEFAULT * 0.9).toInt().convertDpToPixel(resources)
-        )
+        mSeCondLength = Math.min(
+                typeArray.getDimensionPixelSize(
+                        R.styleable.AnalogClockView_analogClockSecondLength,
+                        (RADIUS_DEFAULT * 0.9).toInt().convertDpToPixel(resources)
+                ), mBackgroundRadius)
 
         typeArray.recycle()
 
@@ -128,6 +133,11 @@ class AnalogClockView : View {
                 mTextSize,
                 mBackgroundRadius.toFloat(),
                 mNumberType)
+        mHands = Hands(mStrokeWidth.toFloat(),
+                mHoursColor, mHoursLength,
+                mMinuteColor, mMinuteLength,
+                mSecondColor, mSeCondLength)
+
 
         mCurrentWidth = mBackgroundRadius * 2
     }
@@ -154,7 +164,10 @@ class AnalogClockView : View {
         mCircle.setCoordinates(xCenter, yCenter)
         // Center.
         mCenter.setCoordinates(xCenter, yCenter)
+        // Number.
         mNumber.setCoordinates(xCenter, yCenter)
+        // Hand.
+        mHands.setCoordinates(xCenter, yCenter)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -163,5 +176,6 @@ class AnalogClockView : View {
         mCircle.draw(canvas)
         mCenter.draw(canvas)
         mNumber.draw(canvas)
+        mHands.draw(canvas)
     }
 }

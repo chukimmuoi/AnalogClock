@@ -14,6 +14,7 @@
         app:analogClockStrokeColor="#000000"
         app:analogClockStrokeWidth="5dp"
         app:analogClockTextSize="16sp"
-        app:analogClockType="Etruria"/>
+        app:analogClockType="Etruria"
+        app:analogClockSecondColor="#F44336"/>
 
 </android.support.constraint.ConstraintLayout>

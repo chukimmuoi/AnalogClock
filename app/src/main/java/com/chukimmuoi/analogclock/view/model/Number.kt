@@ -6,7 +6,6 @@ import android.graphics.Rect
 import android.graphics.Typeface
 
 
-
 /**
  * @author  : Pos365
  * @Skype   : chukimmuoi
@@ -21,8 +20,10 @@ class Number(private val mStrokeColor: Int, private val mStrokeWidth: Float,
              private val mRadius: Float,
              private val type: Int) {
     companion object {
-        const val NUMBER_TYPE = 0x000a
+        const val NUMBER_TYPE  = 0x000a
         const val ETRURIA_TYPE = 0x000b
+        const val NONE_TYPE    = 0x000c
+
         private val numbers =
                 listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
         private val etruria =
@@ -63,7 +64,7 @@ class Number(private val mStrokeColor: Int, private val mStrokeWidth: Float,
                 }
             }
             mPaint.getTextBounds(text, 0, text.length, mRect) // Trả về hình chữ nhật bao quanh text, ở đây là mRect. Dựa vào đó biết đươc width và heigth của text.
-            val angle = Math.PI / 6 * (i - 3)
+            val angle = Math.PI / 6 * (i - 3) // 6 - 3, 30 - 15
             val x = (xCenter + Math.cos(angle) * mSpaceCenterToNumber - mRect.width() / 2).toFloat() // - mRect.width() / 2 mục đích để toạ độ x ở chính giữa text cần vẽ.
             val y = (yCenter + Math.sin(angle) * mSpaceCenterToNumber + mRect.height() / 2).toFloat() // + mRect.height() / 2 mục đích để toạ độ y ở chính giữa text cần vẽ.
             mNumberDraws.add(i, NumberDraw(text, x, y))
