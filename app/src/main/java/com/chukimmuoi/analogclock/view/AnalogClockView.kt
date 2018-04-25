@@ -55,6 +55,8 @@ class AnalogClockView : View {
     private lateinit var mNumber: Number
     private lateinit var mHands: Hands
 
+    private var mIsFirst = true
+
     init {
 
     }
@@ -173,9 +175,11 @@ class AnalogClockView : View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        mCircle.draw(canvas)
-        mCenter.draw(canvas)
-        mNumber.draw(canvas)
+        if (mIsFirst) {
+            mCircle.draw(canvas)
+            mCenter.draw(canvas)
+            mNumber.draw(canvas)
+        }
         mHands.draw(canvas)
 
         postInvalidateDelayed(1000)
